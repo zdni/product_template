@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <record id="product_material_view_form" model="ir.ui.view">
+            <field name="name">product.material.view.form</field>
+            <field name="model">product.material</field>
+            <field name="arch" type="xml">
+                <form string="Material">
+                    <sheet>
+                        <div class="oe_title">
+                            <label class="oe_edit_only" for="name" string="Material Name"/>
+                            <h1><field name="name" placeholder="Material Name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="code" />
+                                <field name="type" />
+                            </group>
+                            <group>
+                                <field name="buy_price" />
+                                <field name="supplier_id" widget="res_partner_many2one" context="{'res_partner_search_mode': 'supplier', 'show_vat': True}"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="product_material_view_tree" model="ir.ui.view">
+            <field name="name">product.material.view.tree</field>
+            <field name="model">product.material</field>
+            <field name="arch" type="xml">
+                <tree string="Material">
+                    <field name="name" />
+                    <field name="code" />
+                    <field name="type" />
+                    <field name="buy_price" />
+                    <field name="supplier_id" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="product_material_view_search" model="ir.ui.view">
+            <field name="name">product.material.view.search</field>
+            <field name="model">product.material</field>
+            <field name="arch" type="xml">
+                <search string="Material">
+                    <field name="name" string="Material" filter_domain="[('name', 'ilike', self)]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Material Type" name="type" domain="[]" context="{'group_by': 'type'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="product_material_action" model="ir.actions.act_window">
+            <field name="name">Material</field>
+            <field name="res_model">product.material</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem
+            id="material_root_menu"
+            name="Material"
+            sequence="10"
+            parent="stock.menu_stock_root"
+        />
+
+        <menuitem
+            id="product_material_menu"
+            name="Material"
+            action="product_material_action"
+            parent="product_material.material_root_menu"
+            sequence="10"
+        />
+    
+    </data>
+
+</odoo>
