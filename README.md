@@ -4,6 +4,7 @@
 
 ## ERD
 > ERD can be seen in the `static/src/image` folder
+
 ![ERD](static/src/image/erd.png)
 
 ## Models
