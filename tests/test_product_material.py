@@ -25,9 +25,9 @@ class TestProductMaterial(TransactionCase):
         self.assertLess(material_vals, 100.0, "Buy Price can't be set smaller than 100!")
 
         material_vals['buy_price'] = 100.0
+        self.assertRaises(UserError, self.env['product.material'].create, material_vals)
+        
         material = self.env['product.material'].create(material_vals)
 
         with self.assertRaises(UserError):
             material.buy_price = 99.0
-        
-        print('Your test was Successful!')
